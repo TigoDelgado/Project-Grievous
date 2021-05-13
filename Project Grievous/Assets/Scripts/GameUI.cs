@@ -8,15 +8,16 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI HealthText;
 
-    GameOverUI m_gameOverUI;
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject pauseUI;
     Health m_health;
 
     void Start()
     {
         GameManager.OnGameStateChanged += GameStateChanged;
 
-        m_gameOverUI = GetComponentInChildren<GameOverUI>();
-        if (m_gameOverUI != null) m_gameOverUI.gameObject.SetActive(false);
+        gameOverUI?.gameObject.SetActive(false);
+        pauseUI?.gameObject.SetActive(false);
 
         Health.onHealthUpdate += UpdateHealth;
         m_health = FindObjectOfType<Health>();
@@ -48,7 +49,18 @@ public class GameUI : MonoBehaviour
     {
         if (gameState == GameManager.GameState.GameOver)
         {
-            m_gameOverUI.gameObject.SetActive(true);
+            pauseUI?.gameObject.SetActive(false);
+            gameOverUI?.gameObject.SetActive(true);
+        }
+        else if (gameState == GameManager.GameState.Paused)
+        {
+            gameOverUI?.gameObject.SetActive(false);
+            pauseUI?.gameObject.SetActive(true);
+        }
+        else
+        {
+            gameOverUI?.gameObject.SetActive(false);
+            pauseUI?.gameObject.SetActive(false);
         }
     }
 
