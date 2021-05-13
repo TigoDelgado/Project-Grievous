@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        Debug.Log("New state: " + newState);
         OnGameStateChanged?.Invoke(newState);
     }
 
@@ -72,7 +73,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
-        Timer.Instance.ResetTimer();
         Timer.Instance.StartTimer();
     }
 
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
             UpdateGameState(GameState.Paused);
             isPaused = true;
         }
-        if (state == GameState.Paused && isPaused) 
+        else if (state == GameState.Paused && isPaused) 
         {
             UpdateGameState(GameState.Running);
             isPaused = false;

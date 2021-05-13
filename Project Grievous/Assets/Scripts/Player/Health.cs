@@ -25,6 +25,11 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         onHealthUpdate?.Invoke(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            GameManager.Instance.UpdateGameState(GameManager.GameState.GameOver);
+        }
     }
 
     private void GameStateChanged(GameManager.GameState state)

@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
         get { return _instance; }
     }
 
-    private float startTime;
+    private float startTime = -1;
 
     private float currentTime;
 
@@ -48,6 +48,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
+        if (startTime == -1f) ResetTimer();
         timerIsRunning = true;
     }
 
