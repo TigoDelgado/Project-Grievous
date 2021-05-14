@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleStartState()
     {
-        //FIXME
+        Timer.Instance?.ResetTimer();
         UpdateGameState(GameState.Running);
     }
 

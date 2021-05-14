@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 1399053187998381369}
   m_Layer: 0
   m_Name: Little Girl
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   maxSpeedOnGround: 10
   movementSharpnessOnGround: 15
   maxSpeedInAir: 10
-  accelerationSpeedInAir: 25
+  accelerationSpeedInAir: 50
   sprintSpeedModifier: 2
   killHeight: -50
   recievesFallDamage: 0
@@ -299,6 +299,9 @@ MonoBehaviour:
   wallMaxDistance: 2
   minimumHeight: 0.4
   jumpDuration: 0.6
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   wallSpeedMultiplier: 12
   wallBouncing: 3
   wallGravityDownForce: 100
