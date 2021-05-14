@@ -152,7 +152,6 @@ public class FirstPersonMovement : MonoBehaviour
             //if (Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(m_Controller.height), m_Controller.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance, groundCheckLayers, QueryTriggerInteraction.Ignore))
             if (Physics.SphereCast(GetBottomSphereCenter(), m_Controller.radius - Physics.defaultContactOffset, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance, groundCheckLayers, QueryTriggerInteraction.Ignore))
             {
-                
                 // storing the upward direction for the surface found
                 m_GroundNormal = hit.normal;
 
@@ -169,9 +168,15 @@ public class FirstPersonMovement : MonoBehaviour
                         m_Controller.Move(Vector3.down * hit.distance);
                     }
                 }
-                
+                if (hit.transform.CompareTag("MovingPlatform"))
+                {
+                    Debug.Log("On moving platform");
+                    transform.parent = hit.transform;
+                }
+                else transform.parent = null;
             }
         }
+        
     }
 
 

@@ -12,6 +12,8 @@ public class WallRun : MonoBehaviour
     [SerializeField] float minimumHeight = 1.2f;
     [Tooltip("Duration to wait after jump before attaching to wall")]
     [SerializeField] float jumpDuration = 1;
+    [Tooltip("Wall Layers")]
+    [SerializeField] LayerMask wallLayer = -1;
 
     [Header("Wall running modifiers")]
     [Tooltip("Speed multiplier while wallrunning")]
@@ -92,7 +94,6 @@ public class WallRun : MonoBehaviour
             jumping = true;
         }
 
-        //Debug.Log("Can attach = " + CanAttach());
         if (CanAttach())
         {
             hits = new RaycastHit[directions.Length];
@@ -100,7 +101,7 @@ public class WallRun : MonoBehaviour
             for (int i = 0; i < directions.Length; i++)
             {
                 Vector3 dir = transform.TransformDirection(directions[i]);
-                Physics.Raycast(transform.position, dir, out hits[i], wallMaxDistance);
+                Physics.Raycast(transform.position, dir, out hits[i], wallMaxDistance, wallLayer);
                 if (hits[i].collider != null)
                 {
                     Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
@@ -111,7 +112,6 @@ public class WallRun : MonoBehaviour
                 }
             }
 
-            //Debug.Log("Can wall run = " + CanWallRun());
             if (CanWallRun())
             {
                 hits = hits.ToList().Where(h => h.collider != null).OrderBy(h => h.distance).ToArray();

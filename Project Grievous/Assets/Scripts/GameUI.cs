@@ -67,13 +67,13 @@ public class GameUI : MonoBehaviour
 
     public void RestartRun()
     {
-        if (GameManager.Instance.state == GameManager.GameState.GameOver)
+        if (GameManager.Instance.state == GameManager.GameState.GameOver || GameManager.Instance.state == GameManager.GameState.Paused)
             GameManager.Instance.UpdateGameState(GameManager.GameState.Restart);
     }
 
     public void QuitRun()
     {
-        if (GameManager.Instance.state == GameManager.GameState.GameOver)
+        if (GameManager.Instance.state == GameManager.GameState.GameOver || GameManager.Instance.state == GameManager.GameState.Paused)
             Application.Quit();
     }
 }
