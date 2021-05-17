@@ -74,6 +74,8 @@ public class TurretAI : MonoBehaviour
     [Tooltip("Projectile prefab")]
     public Transform pfProjectile;
 
+    [SerializeField] Transform center;
+
     public UnityAction onAttack;
     public UnityAction onDetectedTarget;
     public UnityAction onLostTarget;
@@ -195,7 +197,8 @@ public class TurretAI : MonoBehaviour
         {
             Debug.Log(gameObject.name);
             // Yes this is dumb, but I dont have time to find how to do this properly
-            Vector3 initPosition = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(1).position;
+            //Vector3 initPosition = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(1).position;
+            Vector3 initPosition = center.position;
             Transform projectileTransform = Instantiate(pfProjectile, initPosition, Quaternion.identity);
             Vector3 shootDirection = enemyPosition - initPosition;
             projectileTransform.GetComponent<Projectile>().Setup(shootDirection);

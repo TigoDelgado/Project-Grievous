@@ -396,6 +396,7 @@ MonoBehaviour:
   DetectionRangeColor: {r: 0, g: 0, b: 1, a: 1}
   pfProjectile: {fileID: 6707509801511019034, guid: 8b0d3e27cc9d94143ba0b5143df58082,
     type: 3}
+  center: {fileID: 5584967343111426995}
 --- !u!114 &5118842573809936170
 MonoBehaviour:
   m_ObjectHideFlags: 0
