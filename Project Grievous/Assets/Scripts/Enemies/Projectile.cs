@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Check for a match with the specified name on any GameObject that collides with your GameObject
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.gameObject.name == "Sword")
         {
             other.gameObject.GetComponent<FirstPersonMovement>().Die();
         }
