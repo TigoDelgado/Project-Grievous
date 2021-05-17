@@ -110,6 +110,7 @@ public class FirstPersonMovement : MonoBehaviour
         bool wasGrounded = isGrounded;
 
         GroundCheck();
+        MovingPlatformCheck();
 
         // landing
         if (isGrounded && !wasGrounded)
@@ -168,15 +169,22 @@ public class FirstPersonMovement : MonoBehaviour
                         m_Controller.Move(Vector3.down * hit.distance);
                     }
                 }
-                if (hit.transform.CompareTag("MovingPlatform"))
-                {
-                    Debug.Log("On moving platform");
-                    transform.parent = hit.transform;
-                }
-                else transform.parent = null;
             }
         }
         
+    }
+
+    void MovingPlatformCheck()
+    {
+        if (Physics.SphereCast(GetBottomSphereCenter(), m_Controller.radius + Physics.defaultContactOffset, Vector3.down, out RaycastHit hit, groundCheckDistance))
+        {
+            if (hit.transform.CompareTag("MovingPlatform"))
+            {
+                transform.parent = hit.transform;
+            }
+                
+            else transform.parent = null;
+        }
     }
 
 
