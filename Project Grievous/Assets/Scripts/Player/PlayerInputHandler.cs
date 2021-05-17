@@ -107,6 +107,15 @@ public class PlayerInputHandler : MonoBehaviour
         return false;
     }
 
+    public bool GetQAbiliyInputPressed()
+    {
+        if (CanProcessInput())
+        {
+            return Input.GetButtonDown("Q Ability");
+        }
+        return false;
+    }
+
     public bool GetSprintInputHeld()
     {
         if (CanProcessInput())

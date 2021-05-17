@@ -35,9 +35,8 @@ public class Projectile : MonoBehaviour
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<FirstPersonMovement>().Die();
-            Destroy(this);
         }
-
+        Destroy(gameObject);
     }
 
 }
