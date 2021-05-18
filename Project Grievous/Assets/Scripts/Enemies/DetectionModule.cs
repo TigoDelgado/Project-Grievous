@@ -108,21 +108,12 @@ public class DetectionModule : MonoBehaviour
 
     public virtual void OnDamaged(GameObject damageSource)
     {
-        TimeLastSeenTarget = Time.time;
-        KnownDetectedTarget = damageSource;
-
-        if (Animator)
-        {
-            Animator.SetTrigger(k_AnimOnDamagedParameter);
-        }
+        
     }
 
     public virtual void OnAttack()
     {
-        if (Animator)
-        {
-            Animator.SetTrigger(k_AnimAttackParameter);
-        }
+
     }
 }
 

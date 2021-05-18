@@ -27,7 +27,9 @@ public class Sword : MonoBehaviour
             animator?.Play("sword_swing");
             Swing();
         }
-        else if (!isPlaying("sword_swing") && m_CharacterController.isGrounded && m_InputHandler.GetMoveInput() != new Vector3(0, 0, 0))
+        else if (!isPlaying("sword_swing") 
+            && m_CharacterController.isGrounded 
+            && m_InputHandler.GetMoveInput() != new Vector3(0, 0, 0))
         {
             animator?.Play("sword_running");
         }

@@ -1315,12 +1315,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &906771247 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 122993319717538989, guid: 39f887d546a1a1c4c81e429ac89e0200,
-    type: 3}
-  m_PrefabInstance: {fileID: 9081646325663478847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &934992980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2314,7 +2308,7 @@ GameObject:
   - component: {fileID: 1771264471}
   - component: {fileID: 1771264470}
   - component: {fileID: 1771264469}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: walll big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2519,13 +2513,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130918396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.0016474806, y: -0.008530528, z: 0.00083062483, w: 0.9999619}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 5, y: 2, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0.19, y: -0.977, z: 0.094}
 --- !u!1 &2143318155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,7 +2625,7 @@ PrefabInstance:
     - target: {fileID: 4648683820979417244, guid: 740da030dd2a1f34f898d3b8857e0c4c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4648683820979417244, guid: 740da030dd2a1f34f898d3b8857e0c4c,
         type: 3}
@@ -2681,6 +2675,11 @@ PrefabInstance:
     - target: {fileID: 4648683820979417244, guid: 740da030dd2a1f34f898d3b8857e0c4c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118842573809936173, guid: 740da030dd2a1f34f898d3b8857e0c4c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460792543243741734, guid: 740da030dd2a1f34f898d3b8857e0c4c,
@@ -2770,7 +2769,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_animator
       value: 
-      objectReference: {fileID: 906771247}
+      objectReference: {fileID: 0}
     - target: {fileID: 1534495616266013201, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}
       propertyPath: enemyLayers.m_Bits
@@ -2814,7 +2813,7 @@ PrefabInstance:
     - target: {fileID: 9081646324340287686, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9081646324340287686, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}

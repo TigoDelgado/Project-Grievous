@@ -50,6 +50,10 @@ public class FirstPersonMovement : MonoBehaviour
     [Tooltip("Force applied upward when jumping")]
     [SerializeField] float jumpForce = 9f;
 
+    [Header("Abilties")]
+    [Tooltip("Shield prefab")]
+    public Transform pfShield;
+
 
     public Vector3 characterVelocity { get; set; }
     public bool isGrounded { get; private set; }
@@ -109,6 +113,7 @@ public class FirstPersonMovement : MonoBehaviour
 
         bool wasGrounded = isGrounded;
 
+        AbilitiesCheck();
         GroundCheck();
         MovingPlatformCheck();
 
@@ -323,6 +328,14 @@ public class FirstPersonMovement : MonoBehaviour
     {
         Vector3 directionRight = Vector3.Cross(direction, transform.up);
         return Vector3.Cross(slopeNormal, directionRight).normalized;
+    }
+
+    public void AbilitiesCheck()
+    {
+        if (m_InputHandler.GetQAbiliyInputPressed())
+        {
+            Transform shieldTransform = Instantiate(pfShield, transform.position, Quaternion.identity);
+        }
     }
 
     // Player Death
