@@ -88,13 +88,13 @@ public class TurretAI : MonoBehaviour
     public DetectionModule detectionModule { get; private set; }
 
     GameObject player;
+    Collider[] m_SelfColliders;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        //NavMeshAgent = GetComponent<NavMeshAgent>();
-        //m_SelfColliders = GetComponentsInChildren<Collider>();
+        m_SelfColliders = GetComponentsInChildren<Collider>();
 
 
         // Initialize detection module
@@ -107,7 +107,7 @@ public class TurretAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        detectionModule.HandleTargetDetection(this, GetComponentsInChildren<Collider>());
+        detectionModule.HandleTargetDetection(this, m_SelfColliders);
 
         if (detectionModule.IsSeeingTarget && detectionModule.IsTargetInAttackRange)
         {
@@ -195,9 +195,6 @@ public class TurretAI : MonoBehaviour
     {
         if ((lastFireTime + DelayBetweenShots) < Time.time)
         {
-            Debug.Log(gameObject.name);
-            // Yes this is dumb, but I dont have time to find how to do this properly
-            //Vector3 initPosition = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(1).position;
             Vector3 initPosition = center.position;
             Transform projectileTransform = Instantiate(pfProjectile, initPosition, Quaternion.identity);
             Vector3 shootDirection = enemyPosition - initPosition;
