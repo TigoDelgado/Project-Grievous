@@ -32,10 +32,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Check for a match with the specified name on any GameObject that collides with your GameObject
-        if (other.tag == "Player" || other.gameObject.name == "Sword")
+        if (other.tag == "Player" /*|| other.gameObject.name == "Sword"*/) //FIXME: wat. sword can't die....? why sword even have collider? Removed collider for now...
         {
-            other.gameObject.GetComponent<FirstPersonMovement>().Die();
+            other.gameObject.GetComponent<FirstPersonMovement>()?.Die();
         }
+
         Destroy(gameObject);
     }
 

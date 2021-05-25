@@ -15,4 +15,10 @@ public class Pickup : MonoBehaviour
     {
         transform.Rotate(0, 0, 25 * Time.deltaTime);
     }
+
+    public void PickUp() // FIXME fazer coisas e outras coisas também!
+    {
+        Debug.Log("APANHARAM-ME!");
+        Destroy(gameObject);
+    }
 }

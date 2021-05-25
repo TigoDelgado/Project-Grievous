@@ -30,6 +30,11 @@ public class FirstPersonMovement : MonoBehaviour
     [Tooltip("Height at which the player dies instantly when falling off the map")]
     [SerializeField] float killHeight = -6f;
 
+    [Header("Interaction")]
+    [SerializeField] float pickupRange = 5f;
+    [SerializeField] float pickupRadius = 2f;
+    [SerializeField] LayerMask interactablesMask = -1;
+
     [Header("Fall Damage")]
     [Tooltip("Whether the player will recieve damage when hitting the ground at high speed")]
     public bool recievesFallDamage;
@@ -72,6 +77,7 @@ public class FirstPersonMovement : MonoBehaviour
     CharacterController m_Controller;
     WallRun wallRunComponent;
     Health m_health;
+    Checkpoints m_checkpoints;
 
     Vector3 m_GroundNormal;
     Vector3 m_CharacterVelocity;
@@ -98,6 +104,8 @@ public class FirstPersonMovement : MonoBehaviour
         m_health = GetComponent<Health>();
 
         m_Controller.enableOverlapRecovery = true;
+
+        m_checkpoints = GetComponent<Checkpoints>();
     }
 
 
@@ -139,6 +147,8 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         HandleCharacterMovement();
+
+        HandleCheckpointSet();
     }
 
 
@@ -332,9 +342,43 @@ public class FirstPersonMovement : MonoBehaviour
 
     public void AbilitiesCheck()
     {
-        if (m_InputHandler.GetQAbiliyInputPressed())
+        if (m_InputHandler.GetQAbiliyInputDown())
         {
             Transform shieldTransform = Instantiate(pfShield, transform.position, Quaternion.identity);
+        }
+
+        if (m_InputHandler.GetInteractInputDown())
+        {
+            Debug.Log("trying to interact");
+            Interact();
+        }
+    }
+
+    private void Interact()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(GetInteractionSphereCenter(), pickupRadius - Physics.defaultContactOffset, interactablesMask, QueryTriggerInteraction.Ignore);
+        foreach (Collider hitCollider in hitColliders)
+        {
+            Debug.Log("Collider Hit!!");
+            if (hitCollider.GetComponent<Pickup>())
+            {
+                hitCollider.GetComponent<Pickup>().PickUp();
+            }
+        }
+    }
+
+    private Vector3 GetInteractionSphereCenter()
+    {
+        return transform.position + (transform.forward * (pickupRange - pickupRadius));
+    }
+
+    private void HandleCheckpointSet()
+    {
+        int checkPointInput = m_InputHandler.GetCheckpointInput();
+        if (checkPointInput > 0)
+        {
+            m_checkpoints.SetOnCheckpoint(this.transform, checkPointInput);
+            characterVelocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -343,5 +387,11 @@ public class FirstPersonMovement : MonoBehaviour
     {
         isDead = true;
         GameManager.Instance.UpdateGameState(GameManager.GameState.GameOver);
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        //Gizmos.DrawWireSphere(GetInteractionSphereCenter(), pickupRadius - Physics.defaultContactOffset);
     }
 }

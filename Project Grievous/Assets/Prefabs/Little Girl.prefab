@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 9081646324340287684}
   - component: {fileID: 5219618935150178177}
   - component: {fileID: 1399053187998381369}
+  - component: {fileID: 3637196270397041752}
   m_Layer: 0
   m_Name: Little Girl
   m_TagString: Player
@@ -180,6 +181,11 @@ MonoBehaviour:
   accelerationSpeedInAir: 50
   sprintSpeedModifier: 2
   killHeight: -50
+  pickupRange: 2
+  pickupRadius: 1.5
+  interactablesMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   recievesFallDamage: 0
   minSpeedForFallDamage: 10
   maxSpeedForFallDamage: 30
@@ -260,6 +266,19 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3637196270397041752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9081646324340287688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c307787f21a468c4a97c9f076280a010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointLocations: []
 --- !u!1 &9081646324920500093
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942850815452524, guid: ebc8f1c90e252c646b165cc274829bf5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761872785760568645, guid: ebc8f1c90e252c646b165cc274829bf5,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
