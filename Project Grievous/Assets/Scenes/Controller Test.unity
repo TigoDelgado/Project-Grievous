@@ -1313,7 +1313,7 @@ Transform:
   - {fileID: 1223662444}
   - {fileID: 749871849}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &934992980
 PrefabInstance:
@@ -2778,7 +2778,7 @@ PrefabInstance:
     - target: {fileID: 9081646324340287684, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}
       propertyPath: wallBouncing
-      value: 8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9081646324340287685, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}
@@ -2809,6 +2809,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minSpeedForFallDamage
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081646324340287685, guid: 39f887d546a1a1c4c81e429ac89e0200,
+        type: 3}
+      propertyPath: movementSharpnessOnGround
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9081646324340287686, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}

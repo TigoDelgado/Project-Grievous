@@ -83,6 +83,9 @@ public class FirstPersonMovement : MonoBehaviour
     Vector3 m_CharacterVelocity;
     Vector3 m_LatestImpactSpeed;
 
+    Vector3 platformPosition;
+    bool onPlatform = false;
+
     float m_LastTimeJumped = 0f;
     float m_CameraVerticalAngle = 0f;
     float m_footstepDistanceCounter;
@@ -195,10 +198,22 @@ public class FirstPersonMovement : MonoBehaviour
         {
             if (hit.transform.CompareTag("MovingPlatform"))
             {
-                transform.parent = hit.transform;
+                if (onPlatform)
+                {
+                    m_Controller.Move(hit.transform.position - platformPosition);
+                }
+                platformPosition = hit.transform.position;
+                onPlatform = true;
             }
-                
-            else transform.parent = null;
+
+            else
+            {
+                onPlatform = false;
+            }
+        }
+        else
+        {
+            onPlatform = false;
         }
     }
 
@@ -285,14 +300,23 @@ public class FirstPersonMovement : MonoBehaviour
             {
                 if (wallRunComponent == null || (wallRunComponent != null && !wallRunComponent.IsWallRunning()))
                 {
-                    // add air acceleration
+                    // calculate the desired velocity from inputs, max speed, and current slope
+                    Vector3 targetHorizontalVelocity = Vector3.ProjectOnPlane( worldspaceMoveInput * maxSpeedOnGround * speedModifier, Vector3.up);
+
+                    // smoothly interpolate between our current velocity and the target velocity based on acceleration speed
+                    Vector3 horizontalVelocity = Vector3.Lerp(Vector3.ProjectOnPlane(characterVelocity, Vector3.up), targetHorizontalVelocity, movementSharpnessOnGround / 4 * Time.deltaTime);
+
+                    float verticalVelocity = characterVelocity.y;
+                    characterVelocity = horizontalVelocity + (Vector3.up * verticalVelocity);
+
+                    /*// add air acceleration
                     characterVelocity += worldspaceMoveInput * accelerationSpeedInAir * Time.deltaTime;
 
                     // limit air speed to a maximum, but only horizontally
                     float verticalVelocity = characterVelocity.y;
                     Vector3 horizontalVelocity = Vector3.ProjectOnPlane(characterVelocity, Vector3.up);
                     horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, maxSpeedInAir * speedModifier);
-                    characterVelocity = horizontalVelocity + (Vector3.up * verticalVelocity);
+                    characterVelocity = horizontalVelocity + (Vector3.up * verticalVelocity);*/
 
                     // apply the gravity to the velocity
                     characterVelocity += Vector3.down * gravityDownForce * Time.deltaTime;

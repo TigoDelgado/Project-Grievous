@@ -173,10 +173,10 @@ MonoBehaviour:
   gravityDownForce: 20
   groundCheckLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   groundCheckDistance: 0.1
   maxSpeedOnGround: 10
-  movementSharpnessOnGround: 15
+  movementSharpnessOnGround: 10
   maxSpeedInAir: 10
   accelerationSpeedInAir: 50
   sprintSpeedModifier: 2
@@ -227,8 +227,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  wallSpeedMultiplier: 12
-  wallBouncing: 3
+  wallSpeedMultiplier: 10
+  wallBouncing: 1.5
   wallGravityDownForce: 100
   maxAngleRoll: 20
   cameraTransitionDuration: 0.5
