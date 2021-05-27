@@ -59,9 +59,9 @@ public class Sword : MonoBehaviour
         foreach (Collider hitCollider in hitColliders)
         {
             Debug.Log("collider hit");
-            if (hitCollider.GetComponent<Destructable>())
+            if (hitCollider.GetComponent<Destructible>())
             {
-                hitCollider.GetComponent<Destructable>().Destroy();
+                hitCollider.GetComponent<Destructible>().Destroy();
             }
         }
 

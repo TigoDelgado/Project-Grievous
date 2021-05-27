@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    #region Singleton
     private static Timer _instance;
 
-    private bool timerIsRunning = false;
     public static Timer Instance
     {
         get { return _instance; }
     }
-
-    private float startTime = -1;
-
-    private float currentTime;
 
     private void Awake()
     {
@@ -30,6 +26,33 @@ public class Timer : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    #endregion
+
+    private bool timerIsRunning = false;
+
+    private float startTime = -1f;
+
+    private float currentTime;
+
+    public float CurrentTime
+    {
+        get
+        {
+            return currentTime;
+        }
+    }
+
+    private float bestTime = 0f;
+
+    public float BestTime
+    {
+        get
+        {
+            return bestTime;
+        }
+    }
+
+    private bool isBestTime => (bestTime > 0f && currentTime < bestTime) || true;
 
     private void Update()
     {
@@ -41,11 +64,6 @@ public class Timer : MonoBehaviour
         startTime = Time.time;
     }
 
-    public float GetCurrentTime()
-    {
-        return currentTime;
-    }
-
     public void StartTimer()
     {
         if (startTime == -1f) ResetTimer();
@@ -55,5 +73,15 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         timerIsRunning = false;
+    }
+
+    public void SetBestTime()
+    {
+        Debug.Log("is best time?");
+        if (isBestTime && ScoreManager.Instance.IsHighscore)
+        {
+            Debug.Log("IS BEST TIME DUDE");
+            bestTime = currentTime;
+        }
     }
 }

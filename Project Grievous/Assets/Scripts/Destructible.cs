@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destructable : MonoBehaviour
+public class Destructible : MonoBehaviour
 {
-    public void Destroy()
+    public virtual void Destroy()
     {
         Debug.Log("MATARAM-ME!");
         Destroy(gameObject);

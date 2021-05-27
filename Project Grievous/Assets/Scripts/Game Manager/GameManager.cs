@@ -32,7 +32,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Start);
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            UpdateGameState(GameState.MainMenu);
+        } else
+        {
+            UpdateGameState(GameState.Start);
+        }
+        
     }
 
     public void UpdateGameState(GameState newState)
@@ -41,6 +48,9 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
+            case GameState.MainMenu:
+                HandleMainMenuState();
+                break;
             case GameState.Start:
                 HandleStartState();
                 break;
@@ -53,8 +63,14 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
                 HandleGameOverState();
                 break;
+            case GameState.End:
+                HandleEndState();
+                break;
             case GameState.Restart:
                 HandleRestartState();
+                break;
+            case GameState.Quit:
+                HandleQuitState();
                 break;
         }
 
@@ -62,9 +78,17 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
+    private void HandleMainMenuState()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     private void HandleStartState()
     {
+        SceneManager.LoadScene("Level");
+        isPaused = false;
         Timer.Instance?.ResetTimer();
+        ScoreManager.Instance?.ResetScore();
         UpdateGameState(GameState.Running);
     }
 
@@ -87,13 +111,26 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Timer.Instance.StopTimer();
+        Timer.Instance?.StopTimer();
+    }
+
+    private void HandleEndState()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Timer.Instance?.StopTimer();
+        Timer.Instance?.SetBestTime();
+        ScoreManager.Instance?.SetHighScore();
     }
 
     private void HandleRestartState()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UpdateGameState(GameState.Start);
+    }
+
+    private void HandleQuitState()
+    {
+        Application.Quit();
     }
 
     public void TogglePause()
@@ -112,10 +149,13 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
+        MainMenu,
         Start,
         Running,
         Paused,
         GameOver,
-        Restart
+        End,
+        Restart,
+        Quit
     }
 }

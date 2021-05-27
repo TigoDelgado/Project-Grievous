@@ -126,7 +126,7 @@ public class FirstPersonMovement : MonoBehaviour
 
         AbilitiesCheck();
         GroundCheck();
-        MovingPlatformCheck();
+        GroundTagCheck();
 
         // landing
         if (isGrounded && !wasGrounded)
@@ -192,10 +192,18 @@ public class FirstPersonMovement : MonoBehaviour
         
     }
 
-    void MovingPlatformCheck()
+    void GroundTagCheck()
     {
         if (Physics.SphereCast(GetBottomSphereCenter(), m_Controller.radius + Physics.defaultContactOffset, Vector3.down, out RaycastHit hit, groundCheckDistance))
         {
+            // CHECK IF FINISHED LEVEL
+            if (hit.transform.CompareTag("End"))
+            {
+                if (GameManager.Instance.state == GameManager.GameState.Running) GameManager.Instance.UpdateGameState(GameManager.GameState.End);
+            }
+
+
+            // CHECK IF ON MOVING PLATFORM
             if (hit.transform.CompareTag("MovingPlatform"))
             {
                 if (onPlatform)

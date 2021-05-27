@@ -8,6 +8,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] bool invertYAxis = false;
     [Tooltip("Used to flip the horizontal input axis")]
     [SerializeField] bool invertXAxis = false;
+    [SerializeField] bool canSprint = false;
 
     bool m_FireInputWasHeld;
 
@@ -128,7 +129,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool GetSprintInputHeld()
     {
-        if (CanProcessInput())
+        if (CanProcessInput() && canSprint)
         {
             return Input.GetButton("Sprint");
         }
@@ -146,8 +147,6 @@ public class PlayerInputHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
             if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
             if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
-            if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
-            if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
             return -1;
         }
         return -1;

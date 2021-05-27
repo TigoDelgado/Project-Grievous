@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7470351187022969465}
   - component: {fileID: 5765697441716565468}
   - component: {fileID: 8639918457673220374}
-  - component: {fileID: 5052408230702012689}
   - component: {fileID: 9070608193176655301}
+  - component: {fileID: 4128420532901971255}
   m_Layer: 0
-  m_Name: pickup
+  m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,18 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5052408230702012689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847474520517222595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4325ababb3dfa3e4087253cd88f7c1b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &9070608193176655301
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -109,3 +97,15 @@ CapsuleCollider:
   m_Height: 0.035
   m_Direction: 2
   m_Center: {x: 0, y: 1.837757e-18, z: 0.00025864126}
+--- !u!114 &4128420532901971255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847474520517222595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc026daff0a8064993b1998a6013d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

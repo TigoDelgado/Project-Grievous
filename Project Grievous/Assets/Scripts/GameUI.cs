@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI TimerText;
-    [SerializeField] private TextMeshProUGUI HealthText;
+    [SerializeField] TextMeshProUGUI TimerText;
+    [SerializeField] TextMeshProUGUI HealthText;
+    [SerializeField] TextMeshProUGUI ScoreText;
 
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject pauseUI;
+    [SerializeField] GameObject pauseUI;
     Health m_health;
 
     void Start()
     {
         GameManager.OnGameStateChanged += GameStateChanged;
 
-        gameOverUI?.gameObject.SetActive(false);
+        UpdateScore(0);
+        ScoreManager.OnScoreUpdated += UpdateScore;
+
         pauseUI?.gameObject.SetActive(false);
 
         Health.onHealthUpdate += UpdateHealth;
@@ -32,12 +34,23 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
-        float time = Timer.Instance.GetCurrentTime();
+        UpdateTime();
+        
+    }
 
-        string minutes = ((int) time / 60).ToString("00");
+    private void UpdateTime()
+    {
+        float time = Timer.Instance.CurrentTime;
+
+        string minutes = ((int)time / 60).ToString("00");
         string seconds = (time % 60).ToString("00");
 
         TimerText.text = minutes + ":" + seconds;
+    }
+
+    private void UpdateScore(int score)
+    {
+        ScoreText.text = score.ToString();
     }
 
     private void UpdateHealth(float health)
@@ -49,17 +62,22 @@ public class GameUI : MonoBehaviour
     {
         if (gameState == GameManager.GameState.GameOver)
         {
-            pauseUI?.gameObject.SetActive(false);
-            gameOverUI?.gameObject.SetActive(true);
+            pauseUI?.GetComponent<GameOverUI>().UpdateScores("Game Over");
+            pauseUI?.gameObject.SetActive(true);
         }
         else if (gameState == GameManager.GameState.Paused)
         {
-            gameOverUI?.gameObject.SetActive(false);
+            pauseUI?.GetComponent<GameOverUI>().UpdateScores("Paused");
+            pauseUI?.gameObject.SetActive(true);
+        }
+        else if (gameState == GameManager.GameState.End)
+        {
+            if (ScoreManager.Instance.HighScore == ScoreManager.Instance.CurrentScore) pauseUI?.GetComponent<GameOverUI>().UpdateScores("New Highscore!");
+            else pauseUI?.GetComponent<GameOverUI>().UpdateScores("Keep Trying");
             pauseUI?.gameObject.SetActive(true);
         }
         else
         {
-            gameOverUI?.gameObject.SetActive(false);
             pauseUI?.gameObject.SetActive(false);
         }
     }
@@ -67,13 +85,17 @@ public class GameUI : MonoBehaviour
 
     public void RestartRun()
     {
-        if (GameManager.Instance.state == GameManager.GameState.GameOver || GameManager.Instance.state == GameManager.GameState.Paused)
+        if (GameManager.Instance.state == GameManager.GameState.GameOver || 
+            GameManager.Instance.state == GameManager.GameState.Paused || 
+            GameManager.Instance.state == GameManager.GameState.End)
             GameManager.Instance.UpdateGameState(GameManager.GameState.Restart);
     }
 
     public void QuitRun()
     {
-        if (GameManager.Instance.state == GameManager.GameState.GameOver || GameManager.Instance.state == GameManager.GameState.Paused)
-            Application.Quit();
+        if (GameManager.Instance.state == GameManager.GameState.GameOver ||
+            GameManager.Instance.state == GameManager.GameState.Paused ||
+            GameManager.Instance.state == GameManager.GameState.End)
+            GameManager.Instance.UpdateGameState(GameManager.GameState.MainMenu);
     }
 }

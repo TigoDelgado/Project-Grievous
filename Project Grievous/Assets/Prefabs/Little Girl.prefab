@@ -170,12 +170,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 9081646324920500091}
-  gravityDownForce: 20
+  gravityDownForce: 25
   groundCheckLayers:
     serializedVersion: 2
     m_Bits: 320
   groundCheckDistance: 0.1
-  maxSpeedOnGround: 10
+  maxSpeedOnGround: 11
   movementSharpnessOnGround: 10
   maxSpeedInAir: 10
   accelerationSpeedInAir: 50
@@ -186,11 +186,11 @@ MonoBehaviour:
   interactablesMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  recievesFallDamage: 0
-  minSpeedForFallDamage: 10
-  maxSpeedForFallDamage: 30
-  fallDamageAtMinSpeed: 10
-  fallDamageAtMaxSpeed: 50
+  recievesFallDamage: 1
+  minSpeedForFallDamage: 20
+  maxSpeedForFallDamage: 50
+  fallDamageAtMinSpeed: 2
+  fallDamageAtMaxSpeed: 10
   rotationSpeed: 200
   jumpForce: 10
   pfShield: {fileID: 0}
@@ -209,6 +209,7 @@ MonoBehaviour:
   lookSensitivity: 1
   invertYAxis: 1
   invertXAxis: 0
+  canSprint: 0
 --- !u!114 &9081646324340287684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,9 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398a024d30050004e906c37b63367321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallMaxDistance: 2
+  wallMaxDistance: 1
   minimumHeight: 0.4
-  jumpDuration: 0.6
+  jumpDuration: 0.3
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
