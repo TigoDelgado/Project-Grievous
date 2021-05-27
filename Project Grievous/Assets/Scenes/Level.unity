@@ -60308,11 +60308,6 @@ PrefabInstance:
       propertyPath: interactablesMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
-    - target: {fileID: 9081646324340287685, guid: 39f887d546a1a1c4c81e429ac89e0200,
-        type: 3}
-      propertyPath: movementSharpnessOnGround
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9081646324340287686, guid: 39f887d546a1a1c4c81e429ac89e0200,
         type: 3}
       propertyPath: m_RootOrder
