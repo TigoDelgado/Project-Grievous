@@ -73,6 +73,8 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
+    private bool finished = false;
+
     PlayerInputHandler m_InputHandler;
     CharacterController m_Controller;
     WallRun wallRunComponent;
@@ -197,9 +199,13 @@ public class FirstPersonMovement : MonoBehaviour
         if (Physics.SphereCast(GetBottomSphereCenter(), m_Controller.radius + Physics.defaultContactOffset, Vector3.down, out RaycastHit hit, groundCheckDistance))
         {
             // CHECK IF FINISHED LEVEL
-            if (hit.transform.CompareTag("End"))
+            if (!finished && hit.transform.CompareTag("End"))
             {
-                if (GameManager.Instance.state == GameManager.GameState.Running) GameManager.Instance.UpdateGameState(GameManager.GameState.End);
+                if (GameManager.Instance.state == GameManager.GameState.Running)
+                {
+                    finished = true;
+                    GameManager.Instance.UpdateGameState(GameManager.GameState.End);
+                }
             }
 
 

@@ -75,7 +75,7 @@ public class Sword : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        //Gizmos.DrawWireSphere(GetSphereCenter(), radius);
+        Gizmos.DrawWireSphere(GetSphereCenter(), radius);
     }
 
     public void Die()
