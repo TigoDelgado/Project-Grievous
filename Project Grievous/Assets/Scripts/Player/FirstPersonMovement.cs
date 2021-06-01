@@ -57,7 +57,7 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Abilties")]
     [Tooltip("Shield prefab")]
-    public Transform pfShield;
+    public Object pfShield;
 
 
     public Vector3 characterVelocity { get; set; }
@@ -72,6 +72,9 @@ public class FirstPersonMovement : MonoBehaviour
             return 1f;
         }
     }
+
+    private int shields = 0;
+    private int dashes = 0;
 
     private bool finished = false;
 
@@ -380,16 +383,28 @@ public class FirstPersonMovement : MonoBehaviour
 
     public void AbilitiesCheck()
     {
-        if (m_InputHandler.GetQAbiliyInputDown())
+        if (m_InputHandler.GetQAbiliyInputDown() && shields > 0)
         {
-            Transform shieldTransform = Instantiate(pfShield, transform.position, Quaternion.identity);
+            Object shieldTransform = Instantiate(pfShield, transform.position, Quaternion.identity);
+            Destroy(shieldTransform, 2f);
+            shields--;
         }
 
-        if (m_InputHandler.GetInteractInputDown())
+        if (m_InputHandler.GetEAbiliyInputDown() && dashes > 0)
+        {
+            float x = characterVelocity.x;
+            float z = characterVelocity.z;
+            characterVelocity = new Vector3(x, 0, z);
+            characterVelocity += transform.forward * 20;
+            characterVelocity += transform.up * 10;
+            dashes--;
+        }
+
+        /*if (m_InputHandler.GetInteractInputDown())
         {
             Debug.Log("trying to interact");
-            Interact();
-        }
+            //Interact();
+        }*/
     }
 
     private void Interact()
@@ -401,6 +416,21 @@ public class FirstPersonMovement : MonoBehaviour
             if (hitCollider.GetComponent<Pickup>())
             {
                 hitCollider.GetComponent<Pickup>().PickUp();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Pickup>())
+        {
+            other.GetComponent<Pickup>().PickUp();
+            if (other.CompareTag("Shield")){
+                shields++;
+            }
+            if (other.CompareTag("Dash"))
+            {
+                dashes++;
             }
         }
     }

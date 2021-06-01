@@ -13,7 +13,7 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 25 * Time.deltaTime);
+        transform.Rotate(0, 25 * Time.deltaTime, 0);
     }
 
     public void PickUp() // FIXME fazer coisas e outras coisas também!

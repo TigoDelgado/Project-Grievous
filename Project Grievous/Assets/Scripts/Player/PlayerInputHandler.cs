@@ -127,6 +127,15 @@ public class PlayerInputHandler : MonoBehaviour
         return false;
     }
 
+    public bool GetEAbiliyInputDown()
+    {
+        if (CanProcessInput())
+        {
+            return Input.GetKeyDown(KeyCode.E);
+        }
+        return false;
+    }
+
     public bool GetSprintInputHeld()
     {
         if (CanProcessInput() && canSprint)
