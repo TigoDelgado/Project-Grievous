@@ -44,6 +44,28 @@ MonoBehaviour:
   opacity:
     overrideState: 0
     value: 1
+--- !u!114 &-6821360990020527639
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 227
+  sampleCount:
+    overrideState: 1
+    value: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +83,7 @@ MonoBehaviour:
   - {fileID: -8665332737088509888}
   - {fileID: 4748680856356060810}
   - {fileID: 6495531052685070913}
+  - {fileID: -6821360990020527639}
 --- !u!114 &1877115036178239718
 MonoBehaviour:
   m_ObjectHideFlags: 3
