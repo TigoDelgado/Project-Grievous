@@ -9,10 +9,14 @@ public class Health : MonoBehaviour
 
     public static event Action<float> onHealthUpdate;
 
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
         GameManager.OnGameStateChanged += GameStateChanged;
     }
 
