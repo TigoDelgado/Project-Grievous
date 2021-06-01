@@ -395,7 +395,7 @@ public class FirstPersonMovement : MonoBehaviour
             float x = characterVelocity.x;
             float z = characterVelocity.z;
             characterVelocity = new Vector3(x, 0, z);
-            characterVelocity += transform.forward * 20;
+            characterVelocity += transform.forward * 15;
             characterVelocity += transform.up * 10;
             dashes--;
         }
