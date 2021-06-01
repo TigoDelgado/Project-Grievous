@@ -10,12 +10,22 @@ public class Door : Destructible
     {
         Debug.Log("MATARAM-ME");
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
+        
         //TODO PLAY ANIMATION? PARTICLES!
 
         particles.Play();
 
+        StartCoroutine(disableDoor(0.1f));
+
+       
+
         Destroy(gameObject, 2f);
+    }
+
+    IEnumerator disableDoor(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
     }
 }
