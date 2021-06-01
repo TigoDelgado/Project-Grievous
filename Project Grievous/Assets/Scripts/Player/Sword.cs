@@ -24,37 +24,31 @@ public class Sword : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            animator?.Play("sword_swing");
             Swing();
         }
-        else if (!isPlaying("sword_swing") 
-            && m_CharacterController.isGrounded 
-            && m_InputHandler.GetMoveInput() != new Vector3(0, 0, 0))
+        if(m_CharacterController.isGrounded)
         {
-            animator?.Play("sword_running");
+            animator.SetBool("Air", false);
         }
-        else if (!isPlaying("sword_swing") && m_CharacterController.isGrounded)
+        else
         {
-            animator?.Play("sword_idle");
+            animator.SetBool("Air", true);
         }
-        else if (!isPlaying("sword_swing"))
+
+        if (m_InputHandler.GetMoveInput() != new Vector3(0, 0, 0))
         {
-            animator?.Play("sword_air");
-            //m_animator.CrossFade("sword_air", 0.1f);
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
         }
     }
 
-    bool isPlaying(string stateName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-            return true;
-        else
-            return false;
-    }
 
     public void Swing()
     {
+        animator.SetTrigger("Swing");
         Collider[] hitColliders = Physics.OverlapSphere(GetSphereCenter(), radius - Physics.defaultContactOffset, enemyLayers, QueryTriggerInteraction.Ignore);
         foreach (Collider hitCollider in hitColliders)
         {
