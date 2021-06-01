@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] GameObject pauseUI;
     Health m_health;
+
+    [SerializeField]
+    FirstPersonMovement player;
+    [SerializeField]
+    Image shieldImage;
+    [SerializeField]
+    Image dashImage;
 
     void Start()
     {
@@ -35,7 +43,23 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         UpdateTime();
-        
+
+        if (player.dashes > 0)
+        {
+            dashImage.color = new Color(dashImage.color.r, dashImage.color.g, dashImage.color.b, 1f);
+        } else
+        {
+            dashImage.color = new Color(dashImage.color.r, dashImage.color.g, dashImage.color.b, 0.4f);
+        }
+
+        if (player.shields > 0)
+        {
+            shieldImage.color = new Color(shieldImage.color.r, shieldImage.color.g, shieldImage.color.b, 1f);
+        }
+        else
+        {
+            shieldImage.color = new Color(shieldImage.color.r, shieldImage.color.g, shieldImage.color.b, 0.4f);
+        }
     }
 
     private void UpdateTime()

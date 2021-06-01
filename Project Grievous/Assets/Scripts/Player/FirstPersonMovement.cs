@@ -73,8 +73,8 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
-    private int shields = 0;
-    private int dashes = 0;
+    public int shields = 0;
+    public int dashes = 0;
 
     private bool finished = false;
 
