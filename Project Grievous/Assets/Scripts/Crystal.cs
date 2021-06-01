@@ -16,6 +16,8 @@ public class Crystal : Destructible
 
         particles.Play();
 
+        GetComponent<CapsuleCollider>().enabled = false;
+
         StartCoroutine(disableCrystal(0.1f));
 
         Destroy(gameObject, 2f);
@@ -25,6 +27,5 @@ public class Crystal : Destructible
     {
         yield return new WaitForSeconds(seconds);
         GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
     }
 }
