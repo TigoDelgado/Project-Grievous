@@ -14,12 +14,17 @@ public class Crystal : Destructible
 
         ScoreManager.Instance?.AddScore(score);
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-        //TODO PLAY ANIMATION? PARTICLES!
-
         particles.Play();
 
+        StartCoroutine(disableCrystal(0.1f));
+
         Destroy(gameObject, 2f);
+    }
+
+    IEnumerator disableCrystal(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 }
