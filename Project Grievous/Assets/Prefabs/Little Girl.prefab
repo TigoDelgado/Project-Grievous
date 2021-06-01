@@ -230,7 +230,7 @@ MonoBehaviour:
     m_Bits: 256
   wallSpeedMultiplier: 10
   wallBouncing: 1.5
-  wallGravityDownForce: 100
+  wallGravityDownForce: 80
   maxAngleRoll: 20
   cameraTransitionDuration: 0.5
   normalizedAngleThreshold: 0.2

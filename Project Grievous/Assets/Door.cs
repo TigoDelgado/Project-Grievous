@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : Destructible
+public class Door : Destructible
 {
-    [SerializeField] int score = 1;
-
     [SerializeField] ParticleSystem particles;
     
     public override void Destroy()
     {
-        Debug.Log("MATARAM-ME E EU SOU UM CRISTAL!");
-
-        ScoreManager.Instance?.AddScore(score);
+        Debug.Log("MATARAM-ME");
 
         GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
         //TODO PLAY ANIMATION? PARTICLES!
 
         particles.Play();
