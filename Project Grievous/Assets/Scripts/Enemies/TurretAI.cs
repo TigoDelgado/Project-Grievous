@@ -89,14 +89,15 @@ public class TurretAI : MonoBehaviour
 
     GameObject player;
     Collider[] m_SelfColliders;
-
+    AudioSource audioData;
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         m_SelfColliders = GetComponentsInChildren<Collider>();
 
-
+        audioData = GetComponent<AudioSource>();
         // Initialize detection module
         detectionModule = GetComponent<DetectionModule>();
         detectionModule.onDetectedTarget += OnDetectedTarget;
@@ -108,10 +109,9 @@ public class TurretAI : MonoBehaviour
     void Update()
     {
         detectionModule.HandleTargetDetection(this, m_SelfColliders);
-
         if (detectionModule.IsSeeingTarget && detectionModule.IsTargetInAttackRange)
         {
-            if (++currentPositionUpdate % DelayBetweenPositionUpdates == 0)
+            if (currentPositionUpdate++ % DelayBetweenPositionUpdates == 0)
             {
                 lastKnownPosition = detectionModule.KnownDetectedTarget.transform.position;
                 currentPositionUpdate = 0;
@@ -119,14 +119,6 @@ public class TurretAI : MonoBehaviour
             OrientTowards(lastKnownPosition);
             TryAtack(lastKnownPosition);
         }
-        //Color currentColor = OnHitBodyGradient.Evaluate((Time.time - m_LastTimeDamaged) / FlashOnHitDuration);
-        //m_BodyFlashMaterialPropertyBlock.SetColor("_EmissionColor", currentColor);
-        //foreach (var data in m_BodyRenderers)
-        //{
-        //    data.Renderer.SetPropertyBlock(m_BodyFlashMaterialPropertyBlock, data.MaterialIndex);
-        //}
-
-        //m_WasDamagedThisFrame = false;
     }
 
     void OnLostTarget()
@@ -200,6 +192,7 @@ public class TurretAI : MonoBehaviour
             Vector3 shootDirection = enemyPosition - initPosition;
             projectileTransform.GetComponent<Projectile>().Setup(shootDirection);
             lastFireTime = Time.time;
+            audioData.Play();
             return true;
         }
         return false;
