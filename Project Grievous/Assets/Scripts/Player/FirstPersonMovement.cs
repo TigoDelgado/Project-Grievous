@@ -54,6 +54,10 @@ public class FirstPersonMovement : MonoBehaviour
     [Header("Jump")]
     [Tooltip("Force applied upward when jumping")]
     [SerializeField] float jumpForce = 9f;
+    [SerializeField] private float hangTime = 0.1f;
+    [SerializeField] private float jumpBuffer = 0.1f;
+    private float hangTimeCounter;
+    private float jumpBufferCounter;
 
     [Header("Abilties")]
     [Tooltip("Shield prefab")]
@@ -154,6 +158,8 @@ public class FirstPersonMovement : MonoBehaviour
             }
         }
 
+        UpdateJump();
+
         HandleCharacterMovement();
 
         HandleCheckpointSet();
@@ -234,6 +240,26 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
+    void UpdateJump()
+    {
+        if (isGrounded)
+        {
+            hangTimeCounter = hangTime;
+        }
+        else
+        {
+            hangTimeCounter -= Time.deltaTime;
+        }
+
+        if (m_InputHandler.GetJumpInputDown())
+        {
+            jumpBufferCounter = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
 
     void HandleCharacterMovement()
     {
@@ -286,9 +312,9 @@ public class FirstPersonMovement : MonoBehaviour
                 }
 
                 // jumping
-                if ((isGrounded || (wallRunComponent != null && wallRunComponent.IsWallRunning())) && m_InputHandler.GetJumpInputDown())
+                if ((hangTimeCounter > 0 || (wallRunComponent != null && wallRunComponent.IsWallRunning())) && jumpBufferCounter > 0)
                 {
-                    if (isGrounded)
+                    if (hangTimeCounter > 0)
                     {
                         // start by canceling out the vertical component of our velocity
                         characterVelocity = new Vector3(characterVelocity.x, 0f, characterVelocity.z);
