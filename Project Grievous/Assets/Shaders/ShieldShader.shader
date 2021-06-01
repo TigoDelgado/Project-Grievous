@@ -10,7 +10,6 @@ Shader "Custom/ShieldShader"
         _Bump("Normal", 2D) = "bump" {}
         _Tiling("Tiling", Float) = 1
         _Speed("Speed", Float) = 1
-        _Cube("Reflection Map", Cube) = "" {}
     }
     SubShader
     {
@@ -25,7 +24,6 @@ Shader "Custom/ShieldShader"
 
         sampler2D _MainTex, _FlowMap;
         float _Tiling, _Speed;
-        uniform samplerCUBE _Cube;
 
         struct Input
         {
@@ -39,7 +37,7 @@ Shader "Custom/ShieldShader"
         UNITY_INSTANCING_BUFFER_START(Props)
         UNITY_INSTANCING_BUFFER_END(Props)
 
-        float3 FlowUVW(float2 uv, float2 flowVector, float tiling, float time, bool flowB) {
+        float3 FlowUVW(half2 uv, half2 flowVector, half tiling, half time, bool flowB) {
             float phaseOffset = flowB ? 0.5 : 0;
             float progress = frac(time + phaseOffset);
             float3 uvw;
@@ -52,13 +50,13 @@ Shader "Custom/ShieldShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float2 flowVector = tex2D(_FlowMap, IN.uv_MainTex).rg * 2 - 1;
-            float noise = tex2D(_FlowMap, IN.uv_MainTex).a;
-            float time = _Time.y * _Speed + noise;
-            float3 uvwA = FlowUVW(
+            half2 flowVector = tex2D(_FlowMap, IN.uv_MainTex).rg * 2 - 1;
+            half noise = tex2D(_FlowMap, IN.uv_MainTex).a;
+            half time = _Time.y * _Speed + noise;
+            half3 uvwA = FlowUVW(
                 IN.uv_MainTex, flowVector, _Tiling, time, false
             );
-            float3 uvwB = FlowUVW(
+            half3 uvwB = FlowUVW(
                 IN.uv_MainTex, flowVector, _Tiling, time, true
             );
             fixed4 texA = tex2D(_MainTex, uvwA.xy) * uvwA.z;
