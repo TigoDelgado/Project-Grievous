@@ -38652,8 +38652,8 @@ Transform:
   m_Children:
   - {fileID: 1379990393}
   - {fileID: 1532350938}
-  - {fileID: 1052266233}
   - {fileID: 1919606327}
+  - {fileID: 1052266233}
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54838,27 +54838,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.52985936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.5620995
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5943396
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
-      value: 0.1975347
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
-      value: 0.1975347
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.r
-      value: 0.21698111
+      value: 0.011764706
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: EmissionModule.enabled
@@ -59354,27 +59354,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.52985936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.5620995
+      value: 0.33520982
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5943396
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
-      value: 0.1975347
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
-      value: 0.1975347
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.r
-      value: 0.21698111
+      value: 0.0107040405
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: EmissionModule.enabled
@@ -64041,27 +64041,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.52985936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.5620995
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5943396
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
-      value: 0.1975347
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
-      value: 0.1975347
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.r
-      value: 0.21698111
+      value: 0.011764706
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: EmissionModule.enabled
@@ -76757,27 +76757,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.52985936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.5620995
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5943396
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
-      value: 0.1975347
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.g
-      value: 0.1975347
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: InitialModule.startColor.minColor.r
-      value: 0.21698111
+      value: 0.011764706
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 180149b1a35449044a27b451e816d2de, type: 3}
       propertyPath: EmissionModule.enabled
