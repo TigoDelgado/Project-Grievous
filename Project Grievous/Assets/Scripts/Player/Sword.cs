@@ -6,6 +6,7 @@ public class Sword : MonoBehaviour
 {
     FirstPersonMovement m_CharacterController;
     PlayerInputHandler m_InputHandler;
+    AudioSource m_audioData;
     [SerializeField] Animator animator;
     [SerializeField] Transform sword;
 
@@ -13,9 +14,11 @@ public class Sword : MonoBehaviour
     [SerializeField] float radius = 2f;
     [SerializeField] LayerMask enemyLayers = -1;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        m_audioData = gameObject.GetComponent<AudioSource>();
         m_CharacterController = gameObject.GetComponent<FirstPersonMovement>();
         m_InputHandler = gameObject.GetComponent<PlayerInputHandler>();
     }
@@ -48,6 +51,7 @@ public class Sword : MonoBehaviour
 
     public void Swing()
     {
+        m_audioData.Play();
         animator.SetTrigger("Swing");
         Collider[] hitColliders = Physics.OverlapSphere(GetSphereCenter(), radius - Physics.defaultContactOffset, enemyLayers, QueryTriggerInteraction.Ignore);
         foreach (Collider hitCollider in hitColliders)
